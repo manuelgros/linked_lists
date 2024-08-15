@@ -31,18 +31,6 @@ class LinkedList
     end
   end
 
-  # def size
-  #   return 0 if @head.nil?
-    
-  #   number_of_nodes = 1
-  #   active_node = @head
-  #   until active_node.next_node == nil
-  #     active_node = active_node.next_node
-  #     number_of_nodes += 1
-  #   end
-  #   number_of_nodes   
-  # end
-
   def size
     count = 0
     active_node = @head
@@ -53,18 +41,6 @@ class LinkedList
     count
   end
 
-  # def at(index)
-  #   return nil if index > self.size
-    
-  #   active_node = @head
-  #   pointer = 1
-  #   while pointer < index do
-  #     pointer += 1
-  #     active_node = active_node.next_node
-  #   end
-  #   active_node
-  # end
-
   def at(index)
     active_node = @head
     (index-1).times do 
@@ -74,21 +50,6 @@ class LinkedList
     end
     active_node
   end
-
-  # def pop
-  #   return nil if @tail.nil?
-
-  #   active_node = @head
-  #   pointer = 1
-  #   while pointer < self.size - 1
-  #     active_node = active_node.next_node
-  #     pointer += 1
-  #   end
-  #   @tail = active_node
-  #   deleted_node = active_node.next_node
-  #   active_node.next_node = nil
-  #   deleted_node
-  # end
 
   def pop
     return nil if @tail.nil?
@@ -103,18 +64,6 @@ class LinkedList
     deleted_node
   end
 
-  # def contains(value)
-  #   active_node = @head
-  #   pointer = 1
-  #   while pointer <= self.size
-  #     return true if active_node.value == value
-
-  #     active_node = active_node.next_node
-  #     pointer += 1
-  #   end
-  #   false
-  # end
-
   def contains(value)
     active_node = @head
     until active_node == nil
@@ -124,18 +73,6 @@ class LinkedList
     end
     false
   end
-
-  # def find(value)
-  #   active_node = @head
-  #   pointer = 1
-  #   while pointer <= self.size
-  #     return pointer if active_node.value == value
-
-  #     active_node = active_node.next_node
-  #     pointer += 1
-  #   end
-  #   nil
-  # end
 
   def find(value)
     active_node = @head
@@ -148,19 +85,6 @@ class LinkedList
     end
     nil
   end
-
-  # def to_s
-  #   return "-- empty --" if @head.nil?
-
-  #   active_node = @head
-  #   pointer = 1
-  #   while pointer <= self.size
-  #     print "( #{active_node.value} ) -> "
-  #     active_node = active_node.next_node
-  #     pointer += 1
-  #   end
-  #   puts "nil"
-  # end
 
   def to_s
     return '-- empty --' if @head.nil?
