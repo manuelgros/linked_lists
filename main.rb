@@ -86,6 +86,7 @@ class LinkedList
     nil
   end
 
+  # Still ptints the List object itself at the end (not for empty list though)
   def to_s
     return '-- empty --' if @head.nil?
 
