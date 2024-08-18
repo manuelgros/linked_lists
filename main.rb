@@ -22,7 +22,7 @@ class LinkedList
 
   def append(value)
     node = Node.new(value)
-    if  @tail.nil?
+    if  @head.nil?
       @tail = node
       @head = node
     else
@@ -55,7 +55,7 @@ class LinkedList
     return nil if @tail.nil?
 
     active_node = @head
-    until active_node.next_node == nil
+    until active_node.next_node == @tail
       active_node = active_node.next_node
     end
     @tail = active_node
@@ -99,12 +99,40 @@ class LinkedList
   end
     
 
-  def insert_at(value, index)
-  end
-  
-  def remove_at(index)
+  def insert_at(value, index = 1)
+    return self.prepend(value) if index == 1
+
+    new_node = Node.new(value)
+    active_node = @head
+    (index-2).times do
+      active_node.next_node = Node.new if active_node.next_node == nil
+
+      active_node = active_node.next_node
+    end
+    new_node.next_node = active_node.next_node
+    active_node.next_node = new_node
   end
 
+  
+  def remove_at(index)
+    return nil if @head == nil
+
+    if index == 1
+      deleted_node = @head
+      @head = @head.next_node
+      deleted_node
+    else
+      active_node = @head
+      (index-2).times do
+        active_node = active_node.next_node
+        return self.pop if active_node == @tail
+
+      end
+      deleted_node = active_node.next_node
+      active_node.next_node = active_node.next_node.next_node
+      deleted_node
+    end
+  end
 end
 
 # Node class
@@ -116,3 +144,15 @@ class Node
     @next_node = nil
   end
 end
+
+list = LinkedList.new
+list.append "Bert"
+list.append "Carl"
+list.append "Eddy"
+list.prepend "Aaron"
+puts list
+
+# list.insert_at("Carolin", 8)
+# puts list
+list.remove_at 8
+puts list
